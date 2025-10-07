@@ -1,0 +1,371 @@
+/* General Styles */
+body {
+    font-family: 'Noto Sans JP', sans-serif;
+    margin: 0;
+    background-color: #eef1f5;
+    color: #333;
+}
+
+a.card {
+    text-decoration: none;
+    color: #333;
+}
+
+/* Logo */
+.logo-link {
+    position: fixed;
+    top: -2px;
+    left: 10px; /* Changed from right to left */
+    z-index: 1100; /* Higher than scrolled header */
+}
+
+.site-logo {
+    width: 110px;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo-link:hover .site-logo {
+    transform: scale(1.1);
+}
+
+/* Hero Header (index.html) */
+.hero-header {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('image/sakuhin.jpg');
+    background-size: cover;
+    background-position: center center;
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+    transition: padding 0.4s ease-in-out;
+}
+
+.profile-picture {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+    position: relative;
+    top: 8px;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.hero-header h1 {
+    margin: 10px 0 10px 0;
+    font-size: 2.2em;
+    font-weight: 700;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    transition: font-size 0.4s ease-in-out;
+}
+
+.hero-header p {
+    margin: 0;
+    font-size: 1.2em;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    transition: font-size 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+.contact-bar {
+    margin-top: 20px;
+    font-size: 1em;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.contact-bar a {
+    color: white;
+    text-decoration: none;
+    transition: text-decoration 0.3s;
+}
+
+.contact-bar a:hover {
+    text-decoration: underline;
+}
+
+.contact-bar span.separator {
+    margin: 0 10px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.contact-bar .phone-number {
+    color: white;
+}
+
+.contact-bar i {
+    margin-right: 8px;
+}
+
+/* Scrolled State (index.html) */
+.hero-header.scrolled {
+    padding: 20px 20px;
+}
+
+.hero-header.scrolled h1 {
+    font-size: 1.8em;
+}
+
+.hero-header.scrolled p,
+.hero-header.scrolled .contact-bar {
+    opacity: 0;
+    height: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* Content Grid (index.html) */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Cards (index.html) */
+.card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.card h2 {
+    font-size: 1.6em;
+    color: #4a69bd;
+    margin-top: 0;
+    border-bottom: 2px solid #eef1f5;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.card p, .card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.card ul li {
+    padding: 8px 0;
+}
+
+.card ul li strong {
+    margin-right: 8px;
+    color: #555;
+}
+
+.skills-card {
+    grid-column: 1 / -1;
+}
+
+/* Styles for hobby.html */
+.hobby-item {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+/* Alternate layout for even items */
+.hobby-item:nth-of-type(even) {
+    flex-direction: row-reverse;
+}
+
+.hobby-image {
+    flex: 1;
+}
+
+.hobby-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    display: block;
+}
+
+.hobby-text {
+    flex: 1.5;
+}
+
+.hobby-text h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-left: 4px solid #4a69bd;
+    padding-left: 10px;
+}
+
+.hobby-text p {
+    line-height: 1.8;
+}
+
+/* Slider Styles */
+.slider-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.slider-images {
+    width: 100%;
+    height: 100%;
+}
+
+.slider-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.slider-image.active {
+    opacity: 1;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    padding: 10px 12px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.slider-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.prev-btn {
+    left: 15px;
+}
+
+.next-btn {
+    right: 15px;
+}
+
+.hobby-page-container {
+    max-width: 1050px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Styles for basic.html (Resume) --- */
+.page-container {
+    padding: 40px;
+}
+
+.resume-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 50px;
+    border: 1px solid #ccc;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.resume-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.resume-header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+.resume-header p {
+    margin: 5px 0 0 0;
+    color: #555;
+}
+
+.resume-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 0.95em;
+}
+
+.resume-table th, .resume-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    vertical-align: middle;
+}
+
+.resume-table th {
+    background-color: #f2f2f2;
+    text-align: center;
+}
+
+.basic-info-table .sub-header {
+    width: 80px;
+}
+
+.basic-info-table .main-name {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.resume-photo {
+    width: 120px;
+    height: auto;
+    object-fit: cover;
+}
+
+.resume-section {
+    margin-bottom: 20px;
+}
+
+.resume-section h2 {
+    font-size: 1.4em;
+    border-bottom: 2px solid #4a69bd;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.history-table th:nth-child(1) { width: 80px; }
+.history-table th:nth-child(2) { width: 60px; }
+
+.pr-box {
+    border: 1px solid #ccc;
+    padding: 15px;
+    min-height: 100px;
+}
+
+.back-button-container {
+    text-align: right;
+    margin-top: 30px;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #4a69bd;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #3b569a;
+}

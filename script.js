@@ -7,56 +7,57 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// --- Slider Logic ---
-document.querySelectorAll('.slider-container').forEach(slider => {
-    const images = slider.querySelectorAll('.slider-image');
-    const prevBtn = slider.querySelector('.prev-btn');
-    const nextBtn = slider.querySelector('.next-btn');
-    let currentIndex = 0;
-    let autoplayInterval = null;
+// --- Slider Logic for Horizontal Scrolling ---
+document.querySelectorAll('.slider-images').forEach(slider => {
+    let animationFrameId;
+    let isAutoScrolling = true;
+    let scrollEndTimer = null;
 
-    function updateSlider() {
-        images.forEach((img, index) => {
-            img.classList.toggle('active', index === currentIndex);
-        });
+    // This function runs the animation loop
+    function runAutoScroll() {
+        if (!isAutoScrolling) return; // Stop the loop if the flag is false
+
+        // Scrolling logic
+        if (slider.scrollLeft >= slider.scrollWidth / 2) {
+            slider.scrollLeft = 0;
+        } else {
+            slider.scrollLeft += 1; // Adjust speed by changing this value
+        }
+
+        // Request the next frame
+        animationFrameId = requestAnimationFrame(runAutoScroll);
     }
 
-    function nextSlide() {
-        currentIndex = (currentIndex + 1) % images.length;
-        updateSlider();
+    // Function to start the auto-scrolling
+    function startScrolling() {
+        if (isAutoScrolling) return; // Don't start if already running
+        isAutoScrolling = true;
+        runAutoScroll();
     }
 
-    function prevSlide() {
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        updateSlider();
+    // Function to stop the auto-scrolling
+    function stopScrolling() {
+        isAutoScrolling = false;
+        if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+        }
     }
 
-    function startAutoplay() {
-        if (autoplayInterval) return; // Prevent multiple intervals
-        autoplayInterval = setInterval(nextSlide, 3000); // Change slide every 3 seconds
-    }
+    // Event listener for manual scroll
+    slider.addEventListener('wheel', (e) => {
+        // We only care about horizontal wheel movements to scroll the slider
+        if (e.deltaX !== 0) {
+            stopScrolling(); // Immediately stop the auto-scroll animation
+            e.preventDefault(); // Prevent any other default action
+            slider.scrollLeft += e.deltaX * 3; // Apply the manual horizontal scroll with speed factor
 
-    function stopAutoplay() {
-        clearInterval(autoplayInterval);
-        autoplayInterval = null;
-    }
-
-    // Event Listeners
-    prevBtn.addEventListener('click', () => {
-        prevSlide();
-        stopAutoplay(); // Stop autoplay when user interacts manually
+            // Set a timer to restart auto-scrolling after user has stopped scrolling
+            clearTimeout(scrollEndTimer);
+            scrollEndTimer = setTimeout(startScrolling, 150); // 0.15 second delay
+        }
+        // If e.deltaX is 0, we do nothing, allowing normal vertical page scrolling
     });
 
-    nextBtn.addEventListener('click', () => {
-        nextSlide();
-        stopAutoplay(); // Stop autoplay when user interacts manually
-    });
-
-    // Pause on hover
-    slider.addEventListener('mouseenter', stopAutoplay);
-    slider.addEventListener('mouseleave', startAutoplay);
-
-    // Initialize
-    updateSlider();
-    startAutoplay();
+    // Kick off the initial automatic scroll
+    runAutoScroll();
 });

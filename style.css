@@ -140,13 +140,13 @@ a.card {
 }
 
 .card h2 {
-    font-size: 1.6em;
-    color: #4a69bd;
+    font-size: 1.5em; /* Match hobby-text h3 */
+    color: #333; /* Match hobby-text h3 */
     margin-top: 0;
-    border-bottom: 2px solid #eef1f5;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    padding-left: 10px;
+    margin-bottom: 15px; /* Match hobby-text h3 */
+    border-left: 4px solid #4a69bd; /* Change from border-bottom */
+    padding-left: 10px; /* Change from padding-bottom */
+    border-bottom: none; /* Remove border-bottom */
 }
 
 .card-title-link {
@@ -202,8 +202,7 @@ a.card {
     margin-top: 30px;
     padding: 0 40px;
     max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
+    text-align: left;
 }
 
 .hobby-text h3 {
@@ -234,13 +233,16 @@ a.card {
     display: flex;
     height: 100%;
     gap: 20px;
-    animation: slideImages 30s linear infinite;
     padding: 10px;
     margin: 0 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
-.slider-images:hover {
-    animation-play-state: paused;
+.slider-images::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
 }
 
 .slider-image {
@@ -253,14 +255,12 @@ a.card {
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-@keyframes slideImages {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
+.idol-image-fit {
+    object-fit: contain;
+    background-color: black;
 }
+
+
 
 .hobby-page-container {
     max-width: 1050px;

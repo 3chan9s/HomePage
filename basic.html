@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -23,50 +24,62 @@
         </div>
     </header>
 
-    <main class="page-container">
-        <div class="resume-container">
+    <main class="content-grid">
+        <div class="card full-width-card hobby-page-container">
+
+
             <div class="resume-header">
-                <h1>履歴書</h1>
                 <p>作成日: 2025年10月7日</p>
             </div>
 
-            <table class="resume-table basic-info-table">
-                <tr>
-                    <th rowspan="4" style="width: 100px;">基本情報</th>
-                    <th class="sub-header">ふりがな</th>
-                    <td colspan="3">のと みく</td>
-                    <td rowspan="4" style="width: 150px; text-align: center;">
-                        <img src="image/suit.png" alt="証明写真" class="resume-photo">
-                    </td>
-                </tr>
-                <tr>
-                    <th class="sub-header">氏名</th>
-                    <td colspan="3" class="main-name">能登 美空</td>
-                </tr>
-                <tr>
-                    <th class="sub-header">生年月日</th>
-                    <td colspan="3">2004年9月22日生 (満21歳)</td>
-                </tr>
-                <tr>
-                    <th class="sub-header">性別</th>
-                    <td colspan="3">女性</td>
-                </tr>
-                <tr>
-                    <th colspan="2">現住所</th>
-                    <td colspan="4">〒XXX-XXXX 東京都ＸＸ区ＸＸＸ 1-23-4</td>
-                </tr>
-                <tr>
-                    <th colspan="2">連絡先</th>
-                    <td colspan="4">
-                        電話: 080-4902-7538<br>
-                        Email: notomiku0922@gmail.com
-                    </td>
-                </tr>
-            </table>
+            <div class="resume-section">
+                <h2>基本情報</h2>
+                <table class="resume-table basic-info-table">
+                    <tr>
+                        <th class="sub-header">ふりがな</th>
+                        <td colspan="3">のと みく</td>
+                        <td rowspan="4" style="width: 150px; text-align: center;">
+                            <img src="image/profile.jpg" alt="証明写真" class="resume-photo">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="sub-header">氏名</th>
+                        <td colspan="3" class="main-name">能登 美空</td>
+                    </tr>
+                    <tr>
+                        <th class="sub-header">生年月日</th>
+                        <td colspan="3">2004年9月22日生 (満21歳)</td>
+                    </tr>
+                    <tr>
+                        <th class="sub-header">性別</th>
+                        <td colspan="3">女性</td>
+                    </tr>
+                    <tr>
+                        <th class="sub-header">現住所</th>
+                        <td colspan="4">〒XXX-XXXX 東京都ＸＸ区ＸＸＸ 1-23-4</td>
+                    </tr>
+                    <tr>
+                        <th class="sub-header">連絡先</th>
+                        <td colspan="4">
+                            電話: 080-4902-7538<br>
+                            Email: notomiku0922@gmail.com
+                        </td>
+                    </tr>
+                </table>
 
             <div class="resume-section">
                 <h2>学歴</h2>
                 <table class="resume-table history-table">
+                    <tr>
+                        <th>2020年</th>
+                        <th>4月</th>
+                        <td>法政大学高等学校 入学</td>
+                    </tr>
+                    <tr>
+                        <th>2023年</th>
+                        <th>3月</th>
+                        <td>法政大学高等学校 卒業</td>
+                    </tr>
                     <tr>
                         <th>2023年</th>
                         <th>4月</th>
@@ -94,7 +107,7 @@
             <div class="resume-section">
                 <h2>自己PR</h2>
                 <div class="pr-box">
-                    <p>人とシステムを繋ぐデザインに興味があります。大学ではUI/UXデザインやWebアプリケーション開発について学んでおり、特にユーザーの視点に立った情報設計を得意としています。FigmaやAdobe Illustratorを用いたデザインプロトタイピングの経験も豊富です。使いやすくて、心に残るような体験を創り出せるデザイナー/エンジニアを目指して日々勉強中です。</p>
+                    <p>私は、課題を自ら見つけ、企画から実行までを一貫してやり遂げる力があります。スターバックスでのアルバイトでは、卒業する先輩への感謝を形にするため、店舗メンバーからメッセージを集めたアルバム制作を企画・実施しました。限られた時間の中でデザイン構成やメッセージ回収の仕組みを工夫し、全員の想いを一冊にまとめることで、店舗の絆を深めることができました。さらに、周年記念ではポロシャツデザインを主導し、デザイン案の提案から発注までを担当。店舗全体の一体感を生み出しました。また、本社で行われた記念コーヒー豆のブレンド決定にも学生アルバイトとして参加し、飲み比べを通じて商品づくりに貢献しました。企画の立案から実行まで主体的に取り組む姿勢と、周囲を巻き込み形にする実行力が私の強みです。</p>
                 </div>
             </div>
 
@@ -105,5 +118,10 @@
     </main>
 
     <script src="script.js" defer></script>
+    <script>
+        if (window.location.hash === '#embedded') {
+            document.body.classList.add('embedded-view');
+        }
+    </script>
 </body>
 </html>

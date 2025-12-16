@@ -24,18 +24,19 @@
 
     <main class="content-grid">
         <div class="card full-width-card hobby-page-container">
-            <h2>Hobbies</h2>
+
             <div class="hobby-item">
-                <div class="hobby-image">
-                    <div class="slider-container">
-                        <div class="slider-images">
-                            <img src="image/malaysia.jpg" alt="マレーシアの写真" class="slider-image active">
-                            <img src="image/osaka.jpg" alt="大阪の写真" class="slider-image">
-                            <img src="image/otaru.jpg" alt="小樽の写真" class="slider-image">
-                            <img src="image/singapore.jpg" alt="シンガポールの写真" class="slider-image">
-                        </div>
-                        <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
-                        <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                <div class="slider-container">
+                    <div class="slider-images">
+                        <img src="image/malaysia.jpg" alt="マレーシアの写真" class="slider-image">
+                        <img src="image/osaka.jpg" alt="大阪の写真" class="slider-image">
+                        <img src="image/otaru.jpg" alt="小樽の写真" class="slider-image">
+                        <img src="image/singapore.jpg" alt="シンガポールの写真" class="slider-image">
+                        <!-- 画像を2セット用意して無限ループを実現 -->
+                        <img src="image/malaysia.jpg" alt="マレーシアの写真" class="slider-image">
+                        <img src="image/osaka.jpg" alt="大阪の写真" class="slider-image">
+                        <img src="image/otaru.jpg" alt="小樽の写真" class="slider-image">
+                        <img src="image/singapore.jpg" alt="シンガポールの写真" class="slider-image">
                     </div>
                 </div>
                 <div class="hobby-text">
@@ -44,20 +45,47 @@
                 </div>
             </div>
             <div class="hobby-item">
-                <div class="hobby-image">
-                    <div class="slider-container">
-                        <div class="slider-images">
-                            <img src="image/soccer.jpg" alt="スポーツ観戦の写真1" class="slider-image active">
-                            <img src="image/soccer2.jpg" alt="スポーツ観戦の写真2" class="slider-image">
-                            <img src="image/soccer3.jpg" alt="スポーツ観戦の写真3" class="slider-image">
-                        </div>
-                        <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
-                        <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                <div class="slider-container">
+                    <div class="slider-images">
+                        <img src="image/soccer.jpg" alt="スポーツ観戦の写真1" class="slider-image">
+                        <img src="image/soccer2.jpg" alt="スポーツ観戦の写真2" class="slider-image">
+                        <img src="image/soccer3.jpg" alt="スポーツ観戦の写真3" class="slider-image">
+                        <!-- 画像を2セット用意して無限ループを実現 -->
+                        <img src="image/soccer.jpg" alt="スポーツ観戦の写真1" class="slider-image">
+                        <img src="image/soccer2.jpg" alt="スポーツ観戦の写真2" class="slider-image">
+                        <img src="image/soccer3.jpg" alt="スポーツ観戦の写真3" class="slider-image">
                     </div>
                 </div>
                 <div class="hobby-text">
                     <h3>スポーツ観戦 (Watching Sports)</h3>
-                    <p>特にサッカー観戦が好きで、週末は国内外のリーグ戦をチェックしています。スタジアムの熱気を感じながら応援するのも、戦術を分析しながらじっくり観るのも、どちらも同じくらいエキサイティングです。応援しているチームが勝利した時の喜びは格別です。</p>
+                    <p>特にサッカー観戦が好きで、週末は国内外のリーグ戦をチェックしています。スタジアムの熱気を感じながら応援するのも、戦術を分析しながらじっくり観るのも、どちらも同じくらい好きです。応援しているチームが勝利した時の喜びは格別です。</p>
+                </div>
+            </div>
+            <div class="hobby-item">
+                <div class="hobby-image">
+                    <img src="https://via.placeholder.com/400x300.png?text=Guitar/Bass" alt="ギター・ベース" style="width:100%; height:auto;">
+                </div>
+                <div class="hobby-text">
+                    <h3>ギター・ベース (Guitar/Bass)</h3>
+                    <p>家族と一緒にギターやベースを練習しています。いつかみんなで曲を合わせて弾くのが楽しみです。</p>
+                </div>
+            </div>
+            <div class="hobby-item">
+                <div class="hobby-image">
+                    <img src="https://via.placeholder.com/400x300.png?text=Rubik's+Cube" alt="ルービックキューブ" style="width:100%; height:auto;">
+                </div>
+                <div class="hobby-text">
+                    <h3>ルービックキューブ (Rubik's Cube)</h3>
+                    <p>最初は解法を見ながら30分以上かかっていましたが、練習を重ねて今では30秒前後で揃えられるようになりました。日々の練習でタイムを縮めるのが楽しいです。</p>
+                </div>
+            </div>
+            <div class="hobby-item">
+                <div class="hobby-image">
+                    <img src="https://via.placeholder.com/400x300.png?text=Golf" alt="ゴルフ" style="width:100%; height:auto;">
+                </div>
+                <div class="hobby-text">
+                    <h3>ゴルフ (Golf)</h3>
+                    <p>最近ゴルフを始めました。まだ始めたばかりですが、これから練習して上達したいと思っています。</p>
                 </div>
             </div>
             <div class="back-button-container">
@@ -67,5 +95,10 @@
     </main>
 
     <script src="script.js" defer></script>
+    <script>
+        if (window.location.hash === '#embedded') {
+            document.body.classList.add('embedded-view');
+        }
+    </script>
 </body>
 </html>

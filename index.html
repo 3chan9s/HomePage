@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>能登美空の自己紹介</title>
+    <title>のとみくの自己紹介</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -14,7 +14,7 @@
 
     <header class="hero-header">
         <a href="index.html"><img src="image/beer.jpg" alt="プロフィール写真" class="profile-picture"></a>
-        <h1>能登美空</h1>
+        <h1>のとみく</h1>
         <p>法政大学デザイン工学部システムデザイン学科</p>
         <div class="contact-bar">
             <a href="mailto:notomiku0922@gmail.com"><i class="fas fa-envelope"></i> notomiku0922@gmail.com</a>
@@ -24,26 +24,22 @@
     </header>
 
     <main class="content-grid">
-        <a href="basic.html" class="card">
-            <h2>基本情報</h2>
-            <ul>
-                <li><strong>生年月日:</strong> 2004年9月22日</li>
-                <li><strong>学年:</strong> 学部3年</li>
-                <li><strong>性別:</strong> 女</li>
-            </ul>
-        </a>
+        <section class="card">
+            <h2><a href="basic.html" class="card-title-link">Profile</a></h2>
+            <iframe src="basic.html#embedded" class="embedded-page"></iframe>
+            <span class="etc">etc...</span>
+        </section>
 
-        <a href="hobby.html" class="card">
-            <h2>Hobbies</h2>
-            <ul>
-                <li>旅行</li>
-                <li>スポーツ観戦</li>
-            </ul>
-        </a>
+        <section class="card">
+            <h2><a href="hobby.html" class="card-title-link">Hobbies</a></h2>
+            <iframe src="hobby.html#embedded" class="embedded-page"></iframe>
+            <span class="etc">etc...</span>
+        </section>
 
         <section class="card">
             <h2>About Me</h2>
             <p>人とシステムを繋ぐデザインに興味があります。使いやすくて、心に残るような体験を創り出せるデザイナー/エンジニアを目指して勉強中です。</p>
+            <span class="etc">etc...</span>
         </section>
 
         <section class="card">
@@ -52,14 +48,16 @@
                 <li>UI/UXデザイン</li>
                 <li>Webアプリケーション開発</li>
             </ul>
+            <span class="etc">etc...</span>
         </section>
 
         <section class="card">
-            <h2>作品集</h2>
+            <h2><a href="collection.html" class="card-title-link">Collection of works</a></h2>
             <ul>
                 <li>UI/UXデザイン</li>
                 <li>Webアプリケーション開発</li>
             </ul>
+            <span class="etc">etc...</span>
         </section>
 
         <section class="card skills-card">
@@ -68,6 +66,7 @@
                 <li>HTML/CSS, JavaScript, VS Code</li>
                 <li>Adobe Illustrator, Adobe Photoshop, Adobe InDesign, SolidWorks</li>
             </ul>
+            <span class="etc">etc...</span>
         </section>
     </main>
 

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collection of Works - 能登美空の自己紹介</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <a href="index.html" class="logo-link"><img src="image/logo.png" alt="Logo" class="site-logo"></a>
+
+    <header class="hero-header">
+        <a href="index.html"><img src="image/beer.jpg" alt="プロフィール写真" class="profile-picture"></a>
+        <h1>能登美空</h1>
+        <p>法政大学デザイン工学部システムデザイン学科</p>
+        <div class="contact-bar">
+            <a href="mailto:notomiku0922@gmail.com"><i class="fas fa-envelope"></i> notomiku0922@gmail.com</a>
+            <span class="separator">/</span>
+            <span class="phone-number"><i class="fas fa-phone"></i> 080-4902-7538</span>
+        </div>
+    </header>
+
+    <main class="content-grid">
+        <div class="card full-width-card hobby-page-container">
+            <div class="hobby-item">
+                <div class="hobby-image">
+                    <div class="slider-container">
+                        <div class="slider-images">
+                            <img src="https://via.placeholder.com/400x300.png?text=UI/UX+Design+1" alt="UI/UXデザイン作品1" class="slider-image active">
+                            <img src="https://via.placeholder.com/400x300.png?text=UI/UX+Design+2" alt="UI/UXデザイン作品2" class="slider-image">
+                            <img src="https://via.placeholder.com/400x300.png?text=UI/UX+Design+3" alt="UI/UXデザイン作品3" class="slider-image">
+                        </div>
+                        <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="hobby-text">
+                    <h3>UI/UXデザイン作品</h3>
+                    <p>ユーザー体験を重視したデザインを心がけています。使いやすさと見た目の美しさの両立を目指して制作しています。</p>
+                </div>
+            </div>
+
+            <div class="hobby-item">
+                <div class="hobby-image">
+                    <div class="slider-container">
+                        <div class="slider-images">
+                            <img src="https://via.placeholder.com/400x300.png?text=Web+App+1" alt="Webアプリ作品1" class="slider-image active">
+                            <img src="https://via.placeholder.com/400x300.png?text=Web+App+2" alt="Webアプリ作品2" class="slider-image">
+                            <img src="https://via.placeholder.com/400x300.png?text=Web+App+3" alt="Webアプリ作品3" class="slider-image">
+                        </div>
+                        <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="hobby-text">
+                    <h3>Webアプリケーション開発</h3>
+                    <p>HTML、CSS、JavaScriptを使用して、インタラクティブなWebアプリケーションを開発しています。使いやすさと機能性を重視しています。</p>
+                </div>
+            </div>
+
+            <div class="back-button-container">
+                <a href="index.html" class="back-button">トップページに戻る</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js" defer></script>
+    <script>
+        if (window.location.hash === '#embedded') {
+            document.body.classList.add('embedded-view');
+        }
+    </script>
+</body>
+</html>

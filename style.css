@@ -14,13 +14,13 @@ a.card {
 /* Logo */
 .logo-link {
     position: fixed;
-    top: -2px;
+    top: 10px;
     left: 10px; /* Changed from right to left */
     z-index: 1100; /* Higher than scrolled header */
 }
 
 .site-logo {
-    width: 110px;
+    width: 90px;
     height: auto;
     transition: transform 0.3s ease;
 }
@@ -129,7 +129,7 @@ a.card {
 .card {
     background: #ffffff;
     border-radius: 10px;
-    padding: 30px;
+    padding: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -146,6 +146,31 @@ a.card {
     border-bottom: 2px solid #eef1f5;
     padding-bottom: 10px;
     margin-bottom: 20px;
+    padding-left: 10px;
+}
+
+.card-title-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-title-link:hover {
+    text-decoration: none; /* No underline on hover */
+}
+
+.card-title-link::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2; /* Place overlay above iframe */
+}
+
+.card .embedded-page {
+    position: relative;
+    z-index: 1; /* Place iframe below the overlay */
 }
 
 .card p, .card ul {
@@ -169,29 +194,16 @@ a.card {
 /* Styles for hobby.html */
 .hobby-item {
     display: flex;
-    gap: 30px;
-    align-items: center;
-    margin-bottom: 40px;
-}
-
-/* Alternate layout for even items */
-.hobby-item:nth-of-type(even) {
-    flex-direction: row-reverse;
-}
-
-.hobby-image {
-    flex: 1;
-}
-
-.hobby-image img {
-    width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    display: block;
+    flex-direction: column;
+    margin-bottom: 60px;
 }
 
 .hobby-text {
-    flex: 1.5;
+    margin-top: 30px;
+    padding: 0 40px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hobby-text h3 {
@@ -205,62 +217,49 @@ a.card {
 
 .hobby-text p {
     line-height: 1.8;
+    margin: 0 auto;
 }
 
 /* Slider Styles */
 .slider-container {
     position: relative;
-    width: 100%;
-    aspect-ratio: 4 / 5;
+    width: calc(100% - 30px);
+    height: 300px;
     overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    margin: 0 15px;
 }
 
 .slider-images {
-    width: 100%;
+    display: flex;
     height: 100%;
+    gap: 20px;
+    animation: slideImages 30s linear infinite;
+    padding: 10px;
+    margin: 0 10px;
+}
+
+.slider-images:hover {
+    animation-play-state: paused;
 }
 
 .slider-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    height: calc(100% - 20px);
+    aspect-ratio: 1;
+    width: auto;
     object-fit: cover;
-    opacity: 0;
-    transition: opacity 0.4s ease-in-out;
+    flex-shrink: 0;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.slider-image.active {
-    opacity: 1;
-}
-
-.slider-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.4);
-    color: white;
-    border: none;
-    padding: 10px 12px;
-    cursor: pointer;
-    z-index: 10;
-    border-radius: 50%;
-    transition: background-color 0.3s;
-}
-
-.slider-btn:hover {
-    background-color: rgba(0, 0, 0, 0.7);
-}
-
-.prev-btn {
-    left: 15px;
-}
-
-.next-btn {
-    right: 15px;
+@keyframes slideImages {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 .hobby-page-container {
@@ -285,7 +284,8 @@ a.card {
 
 .resume-header {
     text-align: center;
-    margin-bottom: 20px;
+    margin: 30px 0 20px 0; /* 上に30pxの余白を追加 */
+    padding: 0 40px;
 }
 
 .resume-header h1 {
@@ -299,9 +299,9 @@ a.card {
 }
 
 .resume-table {
-    width: 100%;
+    width: calc(100% - 80px);
     border-collapse: collapse;
-    margin-bottom: 20px;
+    margin: 0 40px 20px 40px;
     font-size: 0.95em;
 }
 
@@ -317,22 +317,33 @@ a.card {
 }
 
 .basic-info-table .sub-header {
-    width: 80px;
+    width: 120px;
+}
+
+.basic-info-table td[rowspan="4"] {
+    width: 150px;
+}
+
+.basic-info-table {
+    font-size: 0.95em;
 }
 
 .basic-info-table .main-name {
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: bold;
 }
 
 .resume-photo {
-    width: 120px;
+    width: 100px;
     height: auto;
     object-fit: cover;
 }
 
 .resume-section {
     margin-bottom: 20px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .resume-section h2 {
@@ -340,6 +351,8 @@ a.card {
     border-bottom: 2px solid #4a69bd;
     padding-bottom: 5px;
     margin-bottom: 15px;
+    width: calc(100% - 80px);
+    margin-left: 40px;
 }
 
 .history-table th:nth-child(1) { width: 80px; }
@@ -349,6 +362,8 @@ a.card {
     border: 1px solid #ccc;
     padding: 15px;
     min-height: 100px;
+    width: calc(100% - 80px);
+    margin: 0 40px;
 }
 
 .back-button-container {
@@ -368,4 +383,54 @@ a.card {
 
 .back-button:hover {
     background-color: #3b569a;
+}
+
+.card {
+    position: relative;
+    padding-bottom: 30px; /* Add padding to make space for the 'etc' text */
+}
+
+.etc {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    color: #aaa;
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+.embedded-page {
+    width: 100%;
+    height: 300px;
+    border: none;
+    border-radius: 5px;
+    overflow: hidden; /* Hide oversized content */
+}
+
+/* Styles for embedded pages */
+body.embedded-view .hero-header,
+body.embedded-view .logo-link,
+body.embedded-view .back-button-container {
+    display: none;
+}
+
+body.embedded-view .page-container,
+body.embedded-view .content-grid {
+    padding: 0;
+    max-width: none;
+}
+
+body.embedded-view .resume-container {
+    padding: 10px;
+    border: none;
+    box-shadow: none;
+}
+
+body.embedded-view {
+    background-color: #ffffff; /* Match card background */
+    transform: scale(0.3);
+    transform-origin: top left;
+    width: 333.33%;
+    height: 333.33%;
+    overflow: hidden;
 }

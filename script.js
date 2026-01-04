@@ -25,11 +25,14 @@ document.querySelectorAll('.slider-container').forEach(container => {
     function runAutoScroll() {
         if (!isAutoScrolling) return;
 
-        // Scrolling logic
-        if (slider.scrollLeft >= slider.scrollWidth / 2) {
-            slider.scrollLeft = 0;
-        } else {
-            slider.scrollLeft += 1;
+        // Increment scroll position
+        slider.scrollLeft += 2;
+        
+        // Reset position for seamless infinite loop
+        // When we've scrolled past the first set of images, smoothly reset
+        const singleSetWidth = slider.scrollWidth / 2;
+        if (slider.scrollLeft >= singleSetWidth - 1) {
+            slider.scrollLeft = slider.scrollLeft - singleSetWidth;
         }
 
         animationFrameId = requestAnimationFrame(runAutoScroll);
@@ -49,17 +52,6 @@ document.querySelectorAll('.slider-container').forEach(container => {
             cancelAnimationFrame(animationFrameId);
         }
     }
-
-    // Detect page scroll and pause slider auto-scroll
-    let lastScrollY = window.scrollY;
-    window.addEventListener('scroll', () => {
-        if (Math.abs(window.scrollY - lastScrollY) > 0) {
-            stopScrolling();
-            clearTimeout(pageScrollTimer);
-            pageScrollTimer = setTimeout(startScrolling, 1500);
-            lastScrollY = window.scrollY;
-        }
-    }, { passive: true });
 
     // Button controls
     if (prevBtn) {

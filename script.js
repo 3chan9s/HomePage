@@ -8,29 +8,36 @@ window.addEventListener('scroll', function() {
 });
 
 // --- Slider Logic for Horizontal Scrolling ---
-document.querySelectorAll('.slider-images').forEach(slider => {
+document.querySelectorAll('.slider-container').forEach(container => {
+    const slider = container.querySelector('.slider-images');
+    const prevBtn = container.querySelector('.prev-btn');
+    const nextBtn = container.querySelector('.next-btn');
+    
     let animationFrameId;
     let isAutoScrolling = true;
     let scrollEndTimer = null;
+    let isDragging = false;
+    let startX;
+    let scrollLeftStart;
+    let pageScrollTimer = null;
 
     // This function runs the animation loop
     function runAutoScroll() {
-        if (!isAutoScrolling) return; // Stop the loop if the flag is false
+        if (!isAutoScrolling) return;
 
         // Scrolling logic
         if (slider.scrollLeft >= slider.scrollWidth / 2) {
             slider.scrollLeft = 0;
         } else {
-            slider.scrollLeft += 1; // Adjust speed by changing this value
+            slider.scrollLeft += 1;
         }
 
-        // Request the next frame
         animationFrameId = requestAnimationFrame(runAutoScroll);
     }
 
     // Function to start the auto-scrolling
     function startScrolling() {
-        if (isAutoScrolling) return; // Don't start if already running
+        if (isAutoScrolling) return;
         isAutoScrolling = true;
         runAutoScroll();
     }
@@ -43,20 +50,97 @@ document.querySelectorAll('.slider-images').forEach(slider => {
         }
     }
 
-    // Event listener for manual scroll
-    slider.addEventListener('wheel', (e) => {
-        // We only care about horizontal wheel movements to scroll the slider
-        if (e.deltaX !== 0) {
-            stopScrolling(); // Immediately stop the auto-scroll animation
-            e.preventDefault(); // Prevent any other default action
-            slider.scrollLeft += e.deltaX * 3; // Apply the manual horizontal scroll with speed factor
-
-            // Set a timer to restart auto-scrolling after user has stopped scrolling
-            clearTimeout(scrollEndTimer);
-            scrollEndTimer = setTimeout(startScrolling, 150); // 0.15 second delay
+    // Detect page scroll and pause slider auto-scroll
+    let lastScrollY = window.scrollY;
+    window.addEventListener('scroll', () => {
+        if (Math.abs(window.scrollY - lastScrollY) > 0) {
+            stopScrolling();
+            clearTimeout(pageScrollTimer);
+            pageScrollTimer = setTimeout(startScrolling, 1500);
+            lastScrollY = window.scrollY;
         }
-        // If e.deltaX is 0, we do nothing, allowing normal vertical page scrolling
+    }, { passive: true });
+
+    // Button controls
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            stopScrolling();
+            slider.scrollBy({ left: -300, behavior: 'smooth' });
+            clearTimeout(scrollEndTimer);
+            scrollEndTimer = setTimeout(startScrolling, 3000);
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            stopScrolling();
+            slider.scrollBy({ left: 300, behavior: 'smooth' });
+            clearTimeout(scrollEndTimer);
+            scrollEndTimer = setTimeout(startScrolling, 3000);
+        });
+    }
+
+    // Mouse drag to scroll
+    slider.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeftStart = slider.scrollLeft;
+        slider.style.cursor = 'grabbing';
+        stopScrolling();
     });
+
+    slider.addEventListener('mouseleave', () => {
+        isDragging = false;
+        slider.style.cursor = 'grab';
+    });
+
+    slider.addEventListener('mouseup', () => {
+        isDragging = false;
+        slider.style.cursor = 'grab';
+        clearTimeout(scrollEndTimer);
+        scrollEndTimer = setTimeout(startScrolling, 2000);
+    });
+
+    slider.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 2;
+        slider.scrollLeft = scrollLeftStart - walk;
+    });
+
+    // Touch support
+    slider.addEventListener('touchstart', (e) => {
+        stopScrolling();
+        startX = e.touches[0].pageX - slider.offsetLeft;
+        scrollLeftStart = slider.scrollLeft;
+    });
+
+    slider.addEventListener('touchmove', (e) => {
+        const x = e.touches[0].pageX - slider.offsetLeft;
+        const walk = (x - startX) * 2;
+        slider.scrollLeft = scrollLeftStart - walk;
+    });
+
+    slider.addEventListener('touchend', () => {
+        clearTimeout(scrollEndTimer);
+        scrollEndTimer = setTimeout(startScrolling, 2000);
+    });
+
+    // Event listener for manual scroll with wheel (trackpad horizontal scroll)
+    slider.addEventListener('wheel', (e) => {
+        if (Math.abs(e.deltaX) > 0) {
+            stopScrolling();
+            e.preventDefault();
+            slider.scrollLeft += e.deltaX * 4;
+
+            clearTimeout(scrollEndTimer);
+            scrollEndTimer = setTimeout(startScrolling, 1500);
+        }
+    }, { passive: false });
+
+    // Set cursor style
+    slider.style.cursor = 'grab';
 
     // Kick off the initial automatic scroll
     runAutoScroll();

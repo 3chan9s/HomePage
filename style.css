@@ -247,7 +247,6 @@ a.card {
 
 .slider-image {
     height: calc(100% - 20px);
-    aspect-ratio: 1;
     width: auto;
     object-fit: cover;
     flex-shrink: 0;

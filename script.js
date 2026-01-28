@@ -26,13 +26,13 @@ document.querySelectorAll('.slider-container').forEach(container => {
         if (!isAutoScrolling) return;
 
         // Increment scroll position
-        slider.scrollLeft += 2;
+        slider.scrollLeft += 0.5;
         
         // Reset position for seamless infinite loop
         // When we've scrolled past the first set of images, smoothly reset
-        const singleSetWidth = slider.scrollWidth / 2;
-        if (slider.scrollLeft >= singleSetWidth - 1) {
-            slider.scrollLeft = slider.scrollLeft - singleSetWidth;
+        const singleSetWidth = slider.scrollWidth / 4;
+        if (slider.scrollLeft >= singleSetWidth) {
+            slider.scrollLeft = 0;
         }
 
         animationFrameId = requestAnimationFrame(runAutoScroll);
@@ -78,6 +78,7 @@ document.querySelectorAll('.slider-container').forEach(container => {
         startX = e.pageX - slider.offsetLeft;
         scrollLeftStart = slider.scrollLeft;
         slider.style.cursor = 'grabbing';
+        slider.style.scrollBehavior = 'auto';
         stopScrolling();
     });
 
@@ -89,6 +90,7 @@ document.querySelectorAll('.slider-container').forEach(container => {
     slider.addEventListener('mouseup', () => {
         isDragging = false;
         slider.style.cursor = 'grab';
+        slider.style.scrollBehavior = 'smooth';
         clearTimeout(scrollEndTimer);
         scrollEndTimer = setTimeout(startScrolling, 2000);
     });
@@ -97,24 +99,26 @@ document.querySelectorAll('.slider-container').forEach(container => {
         if (!isDragging) return;
         e.preventDefault();
         const x = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * 2;
+        const walk = (x - startX) * 1;
         slider.scrollLeft = scrollLeftStart - walk;
     });
 
     // Touch support
     slider.addEventListener('touchstart', (e) => {
         stopScrolling();
+        slider.style.scrollBehavior = 'auto';
         startX = e.touches[0].pageX - slider.offsetLeft;
         scrollLeftStart = slider.scrollLeft;
     });
 
     slider.addEventListener('touchmove', (e) => {
         const x = e.touches[0].pageX - slider.offsetLeft;
-        const walk = (x - startX) * 2;
+        const walk = (x - startX) * 1;
         slider.scrollLeft = scrollLeftStart - walk;
     });
 
     slider.addEventListener('touchend', () => {
+        slider.style.scrollBehavior = 'smooth';
         clearTimeout(scrollEndTimer);
         scrollEndTimer = setTimeout(startScrolling, 2000);
     });
@@ -124,10 +128,14 @@ document.querySelectorAll('.slider-container').forEach(container => {
         if (Math.abs(e.deltaX) > 0) {
             stopScrolling();
             e.preventDefault();
-            slider.scrollLeft += e.deltaX * 4;
+            slider.style.scrollBehavior = 'auto';
+            slider.scrollLeft += e.deltaX * 1.5;
 
             clearTimeout(scrollEndTimer);
-            scrollEndTimer = setTimeout(startScrolling, 1500);
+            scrollEndTimer = setTimeout(() => {
+                slider.style.scrollBehavior = 'smooth';
+                startScrolling();
+            }, 1500);
         }
     }, { passive: false });
 
